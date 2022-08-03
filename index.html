@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .body{
+        padding: 0;
+        margin: 0;
+        outline: none;
+        text-decoration: none;
+        box-sizing: border-box;
+        background: lightblue;
+    }
+    .body.dark{
+        background-color: #229;
+    }
+    header{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        justify-items: left;
+        background-color: #229;
+        padding: .5rem;
+        align-items: center;
+        color: #fff;
+    }
+    header img{
+        width: 40px;
+        height: 40px;
+    }
+    header .mode_btn{
+        justify-self: right;
+    }
+    header .name{
+        font-size: larger;
+        word-spacing: 2px;
+        letter-spacing: 1px;
+    }
+    h2{
+        font-size: 4rem;
+        margin: 0;
+        color: #004;
+        word-spacing: 3px;
+        letter-spacing: 1.5px;
+        margin: 2rem 0 .5rem 0;
+    }
+    h4{
+        font-size: 2rem;
+        margin: 0;
+        color: #229;
+        word-spacing: 3px;
+        letter-spacing: 1.5px;
+        margin: .5rem 0 1rem 0;
+    }
+    p{
+        color: whitesmoke;
+        font-size: 1rem;
+        word-spacing: 3px;
+        letter-spacing: 1.5px;
+        margin: .5rem 0 1rem 0;
+    }
+    form{
+        width: 600px;
+        height: max-content;
+        text-align: center;
+        padding: .5rem 1rem;
+        background-color: rgba(255, 255, 255, 0.207);
+        border-radius: 1rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    form h4{
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+    form p{
+        margin: 0;
+        text-align: justify;
+    }
+    form div{
+        padding: 1rem;
+    }
+    form input{
+        width: 100%;
+    }
+    .btn{
+        border: none;
+        border-radius: 2rem;
+        color: white;
+        background: #004;
+    }
+    .container{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .galary{
+        padding: 2rem;
+        margin: 2rem 0 0 0;
+        background-color: #004;
+        border-radius: 5rem;
+    }
+    .galary .img_ctn{
+        position: relative;
+    }
+    .ctrl{
+        position: absolute;
+        left: 20px;
+        bottom: 20px;
+    }
+    .ctrl .span{
+        background-color: #004;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+    }
+    .galary img{
+        width: 800px;
+        height: 100%;
+    }
+    .darkM.dark{
+        color: white;
+        background-color: white;
+    }
+</style>
+<body class="body">
+    <header  class="darkM">
+        <div class="social">
+            <a href=""><img src="/resources/logo/black-instagram-transparent-logo-10671.svg" alt=""></a>
+            <a href=""><img src="/resources/logo/twitter-2170.svg" alt=""></a>
+            <a href=""><img src="/resources/logo/whatsapp-139.svg" alt=""></a>
+        </div>
+        <div class="name">
+            <h1  class="darkM">Tailor Smith</h1>
+        </div>
+        <div class="mode_btn">
+            <img src="/resources/logo/whatsapp-139.svg" alt="" id="btn" onclick="change()">
+        </div>
+    </header>
+    <div class="container">
+        <div class="info_and_booking">
+            <h2 class="darkM">Hi</h2>
+            <h4  class="darkM">i'm tailor Smith</h4>
+            <p>i sew affordable clothings so come petronise me now!</p>
+            <form action="">
+                <h4  class="darkM">Put your measurements and other details here to get started</h4>
+                <div>
+                    <p>Arms length</p>
+                    <input type="number">
+                </div>
+                <div>
+                    <p>Arms width</p>
+                    <input type="number">
+                </div>
+                <div>
+                    <p>leg length</p>
+                    <input type="number">
+                </div>
+                <div>
+                    <p>leg width</p>
+                    <input type="number">
+                </div>
+                <div>
+                    <p>body length</p>
+                    <input type="number">
+                </div>
+                <div>
+                    <p>body width</p>
+                    <input type="number">
+                </div>
+                <div>
+                    <p>Explain your design</p>
+                    <input type="text">
+                </div>
+                <input class="btn" type="submit" value="submit">
+            </form>
+        </div>
+        <div class="galary"  class="darkM">
+            <div class="img_ctn">
+                <img src="/resources/some work/IMG-20220516-WA0064.jpg" alt="">
+                <div class="ctrl">
+                    <span class="span active"></span>
+                    <span class="span"></span>
+                    <span class="span"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    let mode_btn = document.getElementById("btn");
+    function change(){
+        document.getElementsByClassName('body').classList.toggle('dark')
+        document.getElementsByClassName('darkM')[0].classList.toggle('dark')
+        document.getElementsByClassName('darkM')[1].classList.toggle('dark')
+        document.getElementsByClassName('darkM')[2].classList.toggle('dark')
+        console.log('work')
+    }
+</script>
+</body>
+</html>
