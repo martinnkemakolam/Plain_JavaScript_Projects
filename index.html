@@ -7,25 +7,26 @@
     <title>Document</title>
 </head>
 <style>
-    .body{
+    body{
         padding: 0;
         margin: 0;
         outline: none;
         text-decoration: none;
         box-sizing: border-box;
-        background: lightblue;
+        background: #eee;
+        color: #001;
     }
-    .body.dark{
-        background-color: #229;
+    body.dark{
+        background-color: #001;
+        color: #eee;
     }
     header{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         justify-items: left;
-        background-color: #229;
         padding: .5rem;
         align-items: center;
-        color: #fff;
+        border-bottom: 1px solid #005;
     }
     header img{
         width: 40px;
@@ -33,16 +34,28 @@
     }
     header .mode_btn{
         justify-self: right;
+        border: 1px solid #001;
+        width: 60px;
+        height: 25px;
+        display: grid;
+        align-items: center;
+        border-radius: 2rem;
+        padding: 1px;
+    }
+    header .mode_btn.dark{
+        background-color: #eee;
     }
     header .name{
         font-size: larger;
         word-spacing: 2px;
         letter-spacing: 1px;
     }
+    .info_and_booking{
+        margin-left: 1rem;
+    }
     h2{
         font-size: 4rem;
         margin: 0;
-        color: #004;
         word-spacing: 3px;
         letter-spacing: 1.5px;
         margin: 2rem 0 .5rem 0;
@@ -50,13 +63,11 @@
     h4{
         font-size: 2rem;
         margin: 0;
-        color: #229;
         word-spacing: 3px;
         letter-spacing: 1.5px;
         margin: .5rem 0 1rem 0;
     }
     p{
-        color: whitesmoke;
         font-size: 1rem;
         word-spacing: 3px;
         letter-spacing: 1.5px;
@@ -86,6 +97,16 @@
     form input{
         width: 100%;
     }
+    #btn{
+        width: 20px;
+        height: 20px;
+        background-color: #001;
+        border-radius: 50%;
+        justify-self: left;
+    }
+    #btn.dark{
+        justify-self: right;
+    }
     .btn{
         border: none;
         border-radius: 2rem;
@@ -99,11 +120,21 @@
     .galary{
         padding: 2rem;
         margin: 2rem 0 0 0;
-        background-color: #004;
+        background-color: #001;
         border-radius: 5rem;
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+        width: fit-content;
+        height: fit-content;
+        align-self: center;
+    }
+    .galary.dark{
+        background-color: #eee;
     }
     .galary .img_ctn{
         position: relative;
+        margin: 0 auto;
     }
     .ctrl{
         position: absolute;
@@ -111,33 +142,71 @@
         bottom: 20px;
     }
     .ctrl .span{
-        background-color: #004;
+        background-color: #001;
         width: 10px;
         height: 10px;
         border-radius: 50%;
         display: inline-block;
     }
+    .span.active{
+        transform: scale(0.5);
+        box-shadow: 0 0 0 5px white, 0 0 0 6px black;
+    }
     .galary img{
         width: 800px;
         height: 100%;
     }
-    .darkM.dark{
-        color: white;
-        background-color: white;
+    @media screen and (max-width: 1300px)
+    {
+        .galary img{
+            width: 500px;
+        }
+    }
+    @media screen and (max-width: 780px)
+    {
+        .container{
+            grid-template-columns: 1fr;
+        }
+        .galary img{
+            width: 100%;
+        }
+    }
+    @media screen and (min-width: 250px)
+    {
+        header img{
+        width: 20px;
+        height: 20px;
+    }
+    header .name{
+        font-size: large;
+        word-spacing: 1px;
+        letter-spacing: .5px;
+    }
+    form{
+        width: 100%;
+        margin: 0 auto;
+        padding: 0;
+    }
+    .info_and_booking{
+        margin: 2px 0 2px 0;
+    }
+    body{
+        scrollbar-width: none;
+    }
     }
 </style>
-<body class="body">
+<body onload="slide()">
     <header  class="darkM">
         <div class="social">
-            <a href=""><img src="/resources/logo/black-instagram-transparent-logo-10671.svg" alt=""></a>
-            <a href=""><img src="/resources/logo/twitter-2170.svg" alt=""></a>
-            <a href=""><img src="/resources/logo/whatsapp-139.svg" alt=""></a>
+            <a href="https://www.instagram.com/martinnkemakolam/"><img src="/resources/logo/instagram-logo-pink-10679.svg" alt=""></a>
+            <a href="https://twitter.com/MartinNkemakol1?t=jMYZzTsfUFaxZBJ65y6Gzw&s=09"><img src="/resources/logo/twitter-logo-2429.svg" alt=""></a>
+            <a href="https://github.com/martinnkemakolam"><img src="/resources/logo/github-logo-6532.svg" alt=""></a>
         </div>
         <div class="name">
             <h1  class="darkM">Tailor Smith</h1>
         </div>
         <div class="mode_btn">
-            <img src="/resources/logo/whatsapp-139.svg" alt="" id="btn" onclick="change()">
+            <div id="btn" onclick="change()"></div>
         </div>
     </header>
     <div class="container">
@@ -180,7 +249,7 @@
         </div>
         <div class="galary"  class="darkM">
             <div class="img_ctn">
-                <img src="/resources/some work/IMG-20220516-WA0064.jpg" alt="">
+                <img src="/resources/some work/IMG-20220516-WA0064.jpg" id="prod_img">
                 <div class="ctrl">
                     <span class="span active"></span>
                     <span class="span"></span>
@@ -190,14 +259,46 @@
         </div>
     </div>
 <script>
+        let galary = document.getElementsByClassName('galary')
+    let mode_btn_body = document.getElementsByClassName('mode_btn')
     let mode_btn = document.getElementById("btn");
+    let body = document.getElementsByTagName('body');
     function change(){
-        document.getElementsByClassName('body').classList.toggle('dark')
-        document.getElementsByClassName('darkM')[0].classList.toggle('dark')
-        document.getElementsByClassName('darkM')[1].classList.toggle('dark')
-        document.getElementsByClassName('darkM')[2].classList.toggle('dark')
-        console.log('work')
+        body[0].classList.toggle('dark');
+        mode_btn.classList.toggle('dark');
+        mode_btn_body[0].classList.toggle('dark');
+        galary[0].classList.toggle('dark');
+        console.log('yes')
+
+
     }
+
+
+    let prod_img = document.getElementById('prod_img');
+    let button = document.getElementsByClassName('span');
+
+        button[0].onclick = function(){
+            prod_img.src='resources/some work/IMG-20220516-WA0064.jpg';
+            for(bt of button){
+                bt.classList.remove('active')
+            }
+            this.classList.add('active')
+        }
+        button[1].onclick = function(){
+            prod_img.src='resources/some work/IMG-20220516-WA0065.jpg';
+            for(bt of button){
+                bt.classList.remove('active')
+            }
+            this.classList.add('active')
+        }
+        button[2].onclick = function(){
+            prod_img.src='resources/some work/IMG-20220516-WA0066.jpg'
+
+            for(bt of button){
+                bt.classList.remove('active')
+            }
+            this.classList.add('active')
+        }
 </script>
 </body>
 </html>
